@@ -22,7 +22,7 @@ jobs:
       - name: Run TcUnit-Runner
         shell: cmd
         # Start TcUnit-Runner with a timeout of 5 min
-        run: '"C:\Program Files (x86)\TcUnit-Runner\LaunchTcUnit.bat" -t PlcTask -a 134.130.166.132.1.1 -U 5'
+        run: '"C:\Program Files (x86)\TcUnit-Runner\LaunchTcUnit.bat" -a 134.130.166.132.1.1 -U 5'
 
       - uses: KyleAure/junit-report-annotations-action@1.5
         if: always()
