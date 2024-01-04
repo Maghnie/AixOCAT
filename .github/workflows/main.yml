@@ -1,0 +1,45 @@
+# Demo CI workflow with TcUnit-Runner
+name: TcUnit-Runner
+ 
+on:
+  push:
+    branches: [ develop ]
+  pull_request:
+    branches: [ develop ]
+ 
+jobs:
+ 
+  tcunit_runner:
+ 
+    # a self hosted runner, i.e. VM with tag 'tcunit'
+    runs-on: [ self-hosted, Windows, X64, tcunit ]
+ 
+    steps:
+ 
+      - name: Checkout repository
+        uses: actions/checkout@v3
+ 
+      - name: Run TcUnit-Runner
+        shell: cmd
+        # Start TcUnit-Runner with a timeout of 5 min
+        run: '"C:\Program Files (x86)\TcUnit-Runner\LaunchTcUnit.bat" -t PlcTask -a 134.130.166.132.1.1 -U 5'
+
+      - uses: KyleAure/junit-report-annotations-action@1.5
+        if: always()
+        with:
+            name: results TcUnit tests
+            path: C:\actions-runner\_work\AixOCAT\AixOCAT\Examples\Tests\TcUnit_Tests\TcUnit_xUnit_results.xml          
+            access-token: ${{ secrets.GITHUB_TOKEN }}
+            
+  fail-test:
+    # Without this step workflow remains "green" if job2 does fail.
+    name: Unit Test Status -> Workflow Status
+    needs:
+      - tcunit_runner
+    runs-on: [ self-hosted, Windows, X64, tcunit ]
+    if: always()
+    steps:
+      - uses: technote-space/workflow-conclusion-action@v3
+      - name: Check Job Status status and fail if they are red
+        if: env.WORKFLOW_CONCLUSION == 'failure'
+        run: exit 1  
