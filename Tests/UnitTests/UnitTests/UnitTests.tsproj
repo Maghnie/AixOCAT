@@ -13,7 +13,7 @@
 		</System>
 		<Plc>
 			<Project GUID="{DB647767-F583-46B5-8CC8-B2BC4A2029A1}" Name="OSCATTests" PrjFilePath="OSCATTests\OSCATTests.plcproj" TmcFilePath="OSCATTests\OSCATTests.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="OSCATTests\OSCATTests.tmc">
 					<Name>OSCATTests Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Contexts>
