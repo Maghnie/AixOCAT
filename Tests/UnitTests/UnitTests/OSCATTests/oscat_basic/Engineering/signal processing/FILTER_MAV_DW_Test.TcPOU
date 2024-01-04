@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="FILTER_MAV_DW_Test" Id="{9ae2d138-1421-4906-88bd-6a21dc08490c}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FILTER_MAV_DW_Test EXTENDS FB_TestSuite
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[AverageEightThenTenEqualsNine();
+AverageTenThenEightEqualsNine();]]></ST>
+    </Implementation>
+    <Method Name="AverageEightThenTenEqualsNine" Id="{ddf0513e-bd3c-42d5-b90b-a90ff4cb74a5}">
+      <Declaration><![CDATA[METHOD AverageEightThenTenEqualsNine
+VAR
+	MAV : FILTER_MAV_DW;
+	Result : DWORD;
+	ExpectedAverage : DWORD := 9;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TEST('AverageEightThenTenEqualsNine');
+ 
+MAV(X := 8, N := 2);
+MAV(X := 10, Y => Result);
+ 
+AssertEquals(Expected := ExpectedAverage,
+             Actual := Result,
+             Message := 'The calculation is not correct');
+ 
+TEST_FINISHED();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="AverageTenThenEightEqualsNine" Id="{8a8b84d5-13c5-450e-b7f8-032e2929635f}">
+      <Declaration><![CDATA[METHOD AverageTenThenEightEqualsNine
+VAR
+	MAV : FILTER_MAV_DW;
+	Result : DWORD;
+	ExpectedAverage : DWORD := 9;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TEST('AverageTenThenEightEqualsNine');
+ 
+MAV(X := 10, N := 2);
+MAV(X := 8, Y => Result);
+ 
+AssertEquals(Expected := ExpectedAverage,
+             Actual := Result,
+             Message := 'The calculation is not correct');
+ 
+TEST_FINISHED();]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="FILTER_MAV_DW_Test">
+      <LineId Id="10" Count="0" />
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="FILTER_MAV_DW_Test.AverageEightThenTenEqualsNine">
+      <LineId Id="10" Count="2" />
+      <LineId Id="18" Count="0" />
+      <LineId Id="13" Count="4" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FILTER_MAV_DW_Test.AverageTenThenEightEqualsNine">
+      <LineId Id="21" Count="8" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
