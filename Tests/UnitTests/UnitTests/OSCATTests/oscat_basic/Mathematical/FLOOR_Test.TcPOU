@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="FLOOR_Test" Id="{076c40d4-c709-4804-a456-c2b292fdb9ad}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FLOOR_Test EXTENDS FB_TestSuite
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[PositivePieToThree();
+NegativePieToNegativeFour();
+TwoToTwo();]]></ST>
+    </Implementation>
+    <Method Name="NegativePieToNegativeFour" Id="{f38383cb-b87e-4315-8d22-909e3d3c9184}">
+      <Declaration><![CDATA[METHOD NegativePieToNegativeFour
+VAR
+	Result : INT;
+	ExpectedFloor : INT := -4;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TEST('NegativePieToNegativeFour');
+ 
+Result := FLOOR(X := -3.14);
+ 
+AssertEquals(Expected := ExpectedFloor,
+             Actual := Result,
+             Message := 'The calculation is not correct');
+ 
+TEST_FINISHED();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="PositivePieToThree" Id="{d3a835b1-322e-4b48-b2e6-a6731a35a8fd}">
+      <Declaration><![CDATA[METHOD PositivePieToThree
+VAR
+	Result : INT;
+	ExpectedFloor : INT := 3;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TEST('PositivePieToThree');
+ 
+Result := FLOOR(X := 3.14);
+ 
+AssertEquals(Expected := ExpectedFloor,
+             Actual := Result,
+             Message := 'The calculation is not correct');
+ 
+TEST_FINISHED();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TwoToTwo" Id="{845fdea8-ebbd-487d-bde5-1b2cc49bcb4d}">
+      <Declaration><![CDATA[METHOD TwoToTwo
+VAR
+	Result : INT;
+	ExpectedFloor : INT := 2;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TEST('TwoToTwo');
+ 
+Result := FLOOR(X := 2);
+ 
+AssertEquals(Expected := ExpectedFloor,
+             Actual := Result,
+             Message := 'The calculation is not correct');
+ 
+TEST_FINISHED();]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="FLOOR_Test">
+      <LineId Id="9" Count="0" />
+      <LineId Id="17" Count="1" />
+    </LineIds>
+    <LineIds Name="FLOOR_Test.NegativePieToNegativeFour">
+      <LineId Id="6" Count="2" />
+      <LineId Id="10" Count="4" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FLOOR_Test.PositivePieToThree">
+      <LineId Id="6" Count="2" />
+      <LineId Id="10" Count="4" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FLOOR_Test.TwoToTwo">
+      <LineId Id="6" Count="2" />
+      <LineId Id="10" Count="4" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
