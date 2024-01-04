@@ -12,7 +12,7 @@ jobs:
   tcunit_runner:
  
     # a self hosted runner, i.e. VM with tag 'tcunit'
-    runs-on: [ self-hosted, Windows, X64 ]
+    runs-on: [ self-hosted, Windows, X64, tcunit ]
  
     steps:
  
@@ -36,7 +36,7 @@ jobs:
     name: Unit Test Status -> Workflow Status
     needs:
       - tcunit_runner
-    runs-on: [ self-hosted, Windows, X64 ]
+    runs-on: [ self-hosted, Windows, X64, tcunit ]
     if: always()
     steps:
       - uses: technote-space/workflow-conclusion-action@v3
