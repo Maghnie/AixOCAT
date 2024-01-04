@@ -37,7 +37,7 @@ TEST_FINISHED();]]></ST>
       <Declaration><![CDATA[METHOD PositivePieToThree
 VAR
 	Result : INT;
-	ExpectedFloor : INT := 3;  
+	ExpectedFloor : INT := 3; 
 END_VAR
 ]]></Declaration>
       <Implementation>
